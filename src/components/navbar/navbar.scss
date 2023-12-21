@@ -1,0 +1,18 @@
+.navbar{
+    border-bottom: 1px solid #222222; 
+    p{
+        color:#AAAAAA;
+        transition: all .3s ease-in-out;
+    }
+    // p:hover{
+    //     color:#8F00FF;
+    // }
+    // img:hover{
+    //     color: #8F00FF;
+    // }
+}
+
+.dimmed-background {
+    transition: opacity 0.3s; /* Add a transition for smooth fading */
+    opacity: 0.2; /* Initially set opacity to 0 */
+  }

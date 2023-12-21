@@ -1,0 +1,15 @@
+.app{
+    .search{
+        border-bottom: 1px solid #222222; 
+        .search_input{
+            background: transparent;
+            border-style: none;
+            outline: none;
+            padding:5px;
+        }
+    }
+    .dimmed-background {
+        transition: opacity 0.3s; /* Add a transition for smooth fading */
+        opacity: 0.2; /* Initially set opacity to 0 */
+      }
+}
