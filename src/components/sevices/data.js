@@ -1,6 +1,6 @@
 import api from "./api";
 const API_KEY =
-  "60a390f7720520f10f06c9015ea62d264531d0213dc9db2dc0ed90fb04098e89";
+  "03f5a5db582197bc27218fa0a1a593b2e1cb34cdc318fb52754fca3beda4de2c";
 export const Service = {
   async getCountries(id) {
     const { data } = await api.get(`/?action=get_countries&APIkey=${API_KEY}`);
@@ -12,9 +12,10 @@ export const Service = {
     );
     return data;
   } ,
-  async getEvents(from, to,name,id){
+  async getEvents(from, to,id){
     const { data } = await api.get(
-      `/?action=get_events&from=${from}&to=${to}&${name}=${id}&APIkey=${API_KEY}`
+      // `/?action=get_events&from=${from}&to=${to}&league_id=${id}&APIkey=${API_KEY}`
+      `/?action=get_events&from=${from}&to=${to}&league_id=${id}&APIkey=${API_KEY}`
     );
     return data;
   }

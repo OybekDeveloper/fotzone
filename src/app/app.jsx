@@ -7,6 +7,7 @@ import { filterCountry, getCountry } from "../reducer/redux/countrySlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import "./app.scss";
 import { CountryTemplate, Favourites, GetApp, LiveCenter, Navbar, Navbar2, News, Scores } from "../components/index.js";
+import LogIn from "../components/login/login.jsx";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {searchValue}=useSelector(state=>state.country)
@@ -50,6 +51,7 @@ const App = () => {
         <LiveCenter />
         <Routes className="w-3/4 ">
           <Route path="/" element={<Scores />} />
+          <Route path="/login" element={<LogIn />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/news" element={<News />} />
           <Route path="/country/:id" element={<CountryTemplate />} />

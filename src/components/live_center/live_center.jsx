@@ -5,7 +5,7 @@ import { getSearchValue } from '../../reducer/redux/countrySlice';
 
 const LiveCenter = () => {
   const location = useLocation();
-  const { filterSearch ,searchValue} = useSelector(state => state.country)
+  const { filterSearch , searchValue } = useSelector(state => state.country); 
   const dispatch=useDispatch();
   
   const handleSearchValue=(e)=>{
@@ -32,21 +32,21 @@ const LiveCenter = () => {
               <p className="text-[13px] font-bold">REGION</p>
               <img src={katta} alt="" />
             </div>
-            {filterSearch?.map((item) => (
-              <Link key={crypto.randomUUID()} to={`/country/${item.country_id}`}>
-                <div
-                  key={item.country_id}
-                  className="flex items-center gap-x-2 p-2 bg-club_color m-1 rounded-md hover:bg-hover_club_color cursor-pointer "
-                >
-                  <img
-                    width={30}
-                    src={item.country_logo}
-                    alt={item.country_name}
-                  />
-                  <p className="">{item.country_name}</p>
-                </div>
-              </Link>
-            ))}
+              {filterSearch?.map((item) => (
+                <Link key={crypto.randomUUID()} to={`/country/${item.country_id}`}>
+                  <div
+                    key={item.country_id}
+                    className="flex items-center gap-x-2 p-2 bg-club_color m-1 rounded-md hover:bg-hover_club_color cursor-pointer "
+                  >
+                    <img
+                      width={30}
+                      src={item.country_logo}
+                      alt={item.country_name}
+                    />
+                    <p className="">{item.country_name}</p>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
   )
