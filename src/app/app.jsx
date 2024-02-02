@@ -7,13 +7,13 @@ import { filterCountry, getCountry } from "../reducer/redux/countrySlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import "./app.scss";
 import { CountryTemplate, Favourites, GetApp, LiveCenter, Navbar, Navbar2, News, Scores } from "../components/index.js";
-import LogIn from "../components/login/login.jsx";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {searchValue}=useSelector(state=>state.country)
-
+  const { searchValue, defaultCountry} = useSelector(state => state.country)
   const controls = useAnimation();
   const dispatch = useDispatch();
+  
+  console.log("def", defaultCountry);
 
   useEffect(() => {
     const getData = async () => {
@@ -31,7 +31,6 @@ const App = () => {
     dispatch(filterCountry())
     //eslint-disable-next-line
   }, [searchValue])
-
   const handleItemClick = () => {
     controls.start({
       x: isOpen ? "100%" : 0,
@@ -45,13 +44,12 @@ const App = () => {
       <Navbar handleItemClick={handleItemClick} isOpen={isOpen} />
 
       <div
-        className={`main flex gap-[17px] pt-[60px] ${isOpen && "dimmed-background"
+        className={`mb-[60px] main flex gap-[17px] pt-[60px] ${isOpen && "dimmed-background"
           }`}
       >
-        <LiveCenter />
+        <LiveCenter defaultCountry={defaultCountry} />
         <Routes className="w-3/4 ">
           <Route path="/" element={<Scores />} />
-          <Route path="/login" element={<LogIn />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/news" element={<News />} />
           <Route path="/country/:id" element={<CountryTemplate />} />
@@ -59,7 +57,7 @@ const App = () => {
         </Routes>
       </div>
       <div
-        className={`max-lg:flex hidden justify-around fixed ${isOpen && "dimmed-background"
+        className={` max-lg:flex hidden justify-around fixed ${isOpen && "dimmed-background"
           } z-[999] bottom-0 bg-background w-full left-0 px-2 h-[60px]`}
       >
         <div className="flex items-center gap-x-2">

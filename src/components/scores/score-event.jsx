@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Service } from '../sevices/data';
 import { favourite, katta } from '../../icons';
+import { BounceLoader } from 'react-spinners';
 
-const ScoreEvent = ({ id,nowDate,nextDate }) => {
+const ScoreEvent = ({ id, nowDate, setIsLoading }) => {
     const [fetchData, setFatchData] = useState([])
-    console.log(typeof nowDate);
     useEffect(() => {
         const getData = async (ids) => {
-            
             try {
                 const events = await Service.getEvents(nowDate, nowDate, ids);
                 if (events.length > 0) {
@@ -20,7 +19,6 @@ const ScoreEvent = ({ id,nowDate,nextDate }) => {
         getData(id);
         //eslint-disable-next-line
     }, []);
-    console.log(nowDate);
     return (
         <div>
             {fetchData?.map(item => (

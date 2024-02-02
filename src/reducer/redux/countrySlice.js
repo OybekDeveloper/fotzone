@@ -1,33 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  isLoading: false,
+  isLoading: true,
   error: null,
   countries: [],
   filterSearch: [],
   searchValue: "",
   defaultScores: [],
+  defaultCountry: [],
+  defCountry: [
+    {
+      id: 116,
+    },
+    {
+      id: 44,
+    },
+    {
+      id: 6,
+    },
+    {
+      id: 5,
+    },
+    {
+      id: 4,
+    },
+    {
+      id: 3,
+    },
+  ],
 };
-const leagues = [
-  { id: 335 },
-  { id: 278 },
-  { id: 332 },
-  { id: 344 },
-  { id: 153 },
-  { id: 147 },
-  { id: 152 },
-  { id: 300 },
-  { id: 302 },
-  { id: 207 },
-  { id: 206 },
-  { id: 205 },
-  { id: 175 },
-  { id: 168 },
-  { id: 322 },
-  { id: 266 },
-  { id: 3 },
-  { id: 4 },
-];
+
 export const countrySlice = createSlice({
   name: "country",
   initialState,
@@ -35,9 +37,18 @@ export const countrySlice = createSlice({
     getCountry: (state, action) => {
       state.countries = action.payload;
       state.filterSearch = state.countries;
+      // const filterData = action.payload.filter((item) => state.defCountry.map((num) => num.id === item.country_id))
+      const filterData = state.defCountry
+        .map((item) =>
+          action.payload.filter((num) => +num.country_id === item.id)
+        )
+        .flat(Infinity);
+      state.defaultCountry = filterData;
+      state.isLoading = false;
     },
     getSearchValue: (state, action) => {
       state.searchValue = action.payload;
+      state.isLoading = false;
     },
     filterCountry: (state) => {
       const filterData = state.countries?.filter((item) =>
@@ -46,12 +57,7 @@ export const countrySlice = createSlice({
           .includes(state.searchValue.toLowerCase())
       );
       state.filterSearch = filterData;
-    },
-    getDefaultScores: (state, action) => {
-   
-  const filterData=leagues.filter((item) =>
-    item.id===(action.payload.league_id))
-      state.defaultScores = filterData;
+      state.isLoading = false;
     },
   },
 });
