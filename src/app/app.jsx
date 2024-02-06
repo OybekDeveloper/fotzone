@@ -9,11 +9,10 @@ import "./app.scss";
 import { CountryTemplate, Favourites, GetApp, LiveCenter, Navbar, Navbar2, News, Scores } from "../components/index.js";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { searchValue, defaultCountry} = useSelector(state => state.country)
+  const { searchValue, defaultCountry } = useSelector(state => state.country)
   const controls = useAnimation();
   const dispatch = useDispatch();
-  
-  console.log("def", defaultCountry);
+
 
   useEffect(() => {
     const getData = async () => {
